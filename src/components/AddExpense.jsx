@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CATEGORIES } from "../constants";
+import idb from '../idb'
 
 export function AddExpense({ setExpenses }) {
   const [description, setDescription] = useState("");
@@ -7,7 +8,7 @@ export function AddExpense({ setExpenses }) {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [category, setCategory] = useState(CATEGORIES[0]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newExpense = {
@@ -18,7 +19,11 @@ export function AddExpense({ setExpenses }) {
       date: new Date(date),
     };
 
-    setExpenses((prevExpenses) => [...prevExpenses, newExpense]);
+    const db = await idb.openCostsDB("costsdb", 1);
+    await idb.addCost(db, newExpense);
+    const allExpenses = await idb.getAllCosts(db);
+
+    setExpenses(allExpenses);
   };
   return (
     <form onSubmit={handleSubmit}>
