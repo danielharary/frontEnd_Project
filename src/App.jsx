@@ -4,6 +4,8 @@ import { AddExpense } from "./components/AddExpense";
 import { CATEGORIES } from "./constants";
 import { ExpensesList } from "./components/ExpensesList";
 import idb from "./idb";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   const [expenses, setExpenses] = useState([]);
 
