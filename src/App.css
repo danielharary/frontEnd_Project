@@ -40,3 +40,35 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.expenses-table-container {
+  overflow-x: auto;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  background-color: #f7f7f7;
+}
+
+.centered-container {
+  width: 100%;
+  max-width: 1200px;
+  max-height: 90vh; 
+  overflow-y: auto; 
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+
+  ::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  scrollbar-width: none;
+}

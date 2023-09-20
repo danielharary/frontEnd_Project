@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { AddExpense } from "./components/AddExpense";
-import { CATEGORIES } from "./constants";
 import { ExpensesList } from "./components/ExpensesList";
 import idb from "./idb";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,11 +19,16 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <AddExpense setExpenses={setExpenses} />
-      <ExpensesList expenses={expenses} />
-    </div>
+      <div className="container centered-container">
+        <div className="my-4">
+          <h1 className="text-center">Costs Manager Client Application</h1>
+          <h4 className="text-center text-muted">Final Project in Front-End Development</h4>
+        </div>
+        <AddExpense setExpenses={setExpenses} />
+        <ExpensesList expenses={expenses} />
+      </div>
   );
 }
+
 
 export default App;

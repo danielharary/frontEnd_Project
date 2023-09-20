@@ -81,30 +81,28 @@ export function ExpensesList({ expenses }) {
           ))}
         </select>
       </div>
-
-      <table className="table table-striped">
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Amount</th>
-      <th>Category</th>
-      <th>Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    {filteredExpenses.map((expense) => (
-      <tr key={expense.id}>
-        <td>{expense.description}</td>
-        <td>{expense.amount}</td>
-        <td>{expense.category}</td>
-        <td>{expense.date.toLocaleDateString("en-GB")}</td>
+      <div className="expenses-table-container">
+  <table className="table table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Date</th>
       </tr>
-    ))}
-  </tbody>
-</table>
-
-
-
+    </thead>
+    <tbody>
+      {filteredExpenses.map((expense) => (
+        <tr key={expense.id}>
+          <td>{expense.description}</td>
+          <td>{expense.amount}</td>
+          <td>{expense.category}</td>
+          <td>{expense.date.toLocaleDateString("en-GB")}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
 
 
 
