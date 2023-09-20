@@ -7,9 +7,31 @@ export function AddExpense({ setExpenses }) {
   const [amount, setAmount] = useState(0);
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [category, setCategory] = useState(CATEGORIES[0]);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (description.trim() === "") {
+      setError("Description cannot be empty.");
+      return;
+    }
+
+    if (amount <= 0) {
+      setError("Amount should be a positive number.");
+      return;
+    }
+
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateRegex.test(date)) {
+      setError("Invalid date format.");
+      return;
+    }
+
+    if (!CATEGORIES.includes(category)) {
+      setError("Invalid category selected.");
+      return;
+    }
 
     const newExpense = {
       id: Math.random(),
@@ -23,6 +45,7 @@ export function AddExpense({ setExpenses }) {
     await idb.addCost(db, newExpense);
     const allExpenses = await idb.getAllCosts(db);
 
+    setError("");  
     setExpenses(allExpenses);
   };
   return (
@@ -79,6 +102,8 @@ export function AddExpense({ setExpenses }) {
             })}
           </select>
         </div>
+        {error && <p className="text-danger">{error}</p>}
+
         <button type="submit" className="btn btn-primary">Add Expense</button>
       </form>
     </div>
